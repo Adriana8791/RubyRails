@@ -20,10 +20,16 @@
   <%= @usuario.email %>
 </p>
 
+
+
 <p>
-  <strong>Contrasena:</strong>
-  <%= @usuario.contrasena %>
+  <strong>Rol:</strong>
+      <% @rols.each do |rol| %>
+    <% if rol.id == @usuario.rol_id %>
+    <%= rol.nombre %>
+    <% end %>
+  <% end %>
 </p>
 
-<%= link_to 'Edit', edit_usuario_path(@usuario) %> |
-<%= link_to 'Back', usuarios_path %>
+<%= link_to 'Editar', edit_usuario_path(@usuario) %> |
+<%= link_to 'Volver', usuarios_path %>

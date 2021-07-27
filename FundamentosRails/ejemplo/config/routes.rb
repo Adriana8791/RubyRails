@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :comentarios
+  resources :mensajes
+  resources :rols
   resources :usuarios
   resources :tweets
   resources :clientes

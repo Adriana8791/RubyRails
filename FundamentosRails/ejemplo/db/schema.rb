@@ -10,43 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_20_163839) do
+ActiveRecord::Schema.define(version: 2021_07_24_185512) do
 
-  create_table "clientes", force: :cascade do |t|
-    t.string "nombre"
-    t.string "apellido"
-    t.integer "edad"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "libros", force: :cascade do |t|
-    t.string "titulo"
-    t.string "pagin"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "mensajes", force: :cascade do |t|
+  create_table "comentarios", force: :cascade do |t|
     t.text "content"
     t.integer "usuario_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["usuario_id"], name: "index_comentarios_on_usuario_id"
+  end
+
+  create_table "mensajes", force: :cascade do |t|
+    t.integer "usuario_id", null: false
+    t.integer "comentario_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["comentario_id"], name: "index_mensajes_on_comentario_id"
     t.index ["usuario_id"], name: "index_mensajes_on_usuario_id"
   end
 
-  create_table "tests", force: :cascade do |t|
+  create_table "rols", force: :cascade do |t|
     t.string "nombre"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "tweets", force: :cascade do |t|
-    t.string "tweets"
-    t.integer "usuario_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["usuario_id"], name: "index_tweets_on_usuario_id"
   end
 
   create_table "usuarios", force: :cascade do |t|
@@ -55,10 +41,14 @@ ActiveRecord::Schema.define(version: 2021_07_20_163839) do
     t.integer "edad"
     t.string "email"
     t.string "contrasena"
+    t.integer "rol_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["rol_id"], name: "index_usuarios_on_rol_id"
   end
 
+  add_foreign_key "comentarios", "usuarios"
+  add_foreign_key "mensajes", "comentarios"
   add_foreign_key "mensajes", "usuarios"
-  add_foreign_key "tweets", "usuarios"
+  add_foreign_key "usuarios", "rols"
 end

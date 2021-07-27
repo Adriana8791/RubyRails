@@ -4,15 +4,18 @@ class UsuariosController < ApplicationController
   # GET /usuarios or /usuarios.json
   def index
     @usuarios = Usuario.all
+    @rols = Rol.all
   end
 
   # GET /usuarios/1 or /usuarios/1.json
   def show
+    @rols = Rol.all
   end
 
   # GET /usuarios/new
   def new
     @usuario = Usuario.new
+    @rols = Rol.all
   end
 
   # GET /usuarios/1/edit
@@ -64,6 +67,6 @@ class UsuariosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def usuario_params
-      params.require(:usuario).permit(:nombre, :apellido, :edad, :email, :contrasena)
+      params.require(:usuario).permit(:nombre, :apellido, :edad, :email, :contrasena, :rol_id)
     end
 end

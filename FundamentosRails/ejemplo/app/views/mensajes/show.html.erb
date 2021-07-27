@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Usuario:</strong>
+  <%= @mensaje.usuario_id %>
+</p>
+
+<p>
+  <strong>Comentario:</strong>
+  <%= @mensaje.comentario_id %>
+</p>
+
+<%= link_to 'Editar', edit_mensaje_path(@mensaje) %> |
+<%= link_to 'Volver', mensajes_path %>
