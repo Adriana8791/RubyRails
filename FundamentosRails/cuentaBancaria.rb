@@ -10,3 +10,25 @@
 #CuentaBancaria debe tener un método llamado informacion_cuenta que muestre el número de cuenta del usuario,
 #el dinero total, el saldo de la cuenta corriente, el saldo de la cuenta de ahorros y la tasa de interés. 
 #Un usuario no puede establecer ningún atributo de la clase CuentaBancaria.
+require_relative 'cuentabancaria'
+RSpec.describe CuentaBancaria do
+end
+require_relative 'proyecto'
+RSpec.describe Proyecto do
+  it "tiene un getter y un setter para el atributo nombre" do
+    proyecto = Proyecto.new
+    proyecto.nombre = "Nombre"
+    expect(proyecto.nombre).to eq("Nombre")
+  end
+  it "tiene un getter y un setter para el atributo descripcion" do
+    proyecto = Proyecto.new
+    proyecto.descripcion = "Descripcion"
+    expect(proyecto.descripcion).to eq("Descripcion")
+  end
+  it 'tienen un metodo presentacion que muestre el nombre y la descripcion' do
+    proyecto = Proyecto.new
+    proyecto.nombre = "Nombre"
+    proyecto.descripcion = "Descripcion"
+    expect(proyecto.presentacion).to eq("Nombre, Descripcion")
+  end
+end
